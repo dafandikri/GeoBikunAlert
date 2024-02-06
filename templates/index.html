@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Leaflet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="mapid" style="width: 621px; height: 745px;"></div>
+    <script>
+        var mymap = L.map('mapid').setView([-6.3598763353132775, 106.82718514950439], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+            maxZoom: 19,
+        }).addTo(mymap);
+
+        var buses = {{ buses|tojson|safe }}; // This should be passed from Flask
+
+        var markers = {}; // Create an object to hold the markers
+
+        var busesLatLng = [];  // Create an array to hold the new bus objects
+
+        // Fetch new bus data every 10 seconds
+        setInterval(() => {
+            fetch('/get-bus-data')
+                .then(response => response.json())
+                .then(data => {
+                    // Clear the busesLatLng array
+                    busesLatLng = [];
+
+                    // Update the bus markers on the map using the new data
+                    data.forEach(function(bus) {
+                        var busId = bus.id;
+                        // Split the string into x and y coordinates
+                        var coords = bus.coords.split(',').map(function(coord) {
+                            return parseInt(coord.trim());
+                        });
+
+                        var point = L.point(coords[0], coords[1]);
+                        var latLng = mymap.containerPointToLatLng(point);
+
+                        var busLatLng = {
+                            id: busId,
+                            lat: latLng.lat,
+                            lng: latLng.lng,
+                        };
+                        busesLatLng.push(busLatLng);
+
+                        if (markers[busId]) {
+                            // If a marker for this bus already exists, move it
+                            markers[busId].setLatLng(latLng);
+                        } else {
+                            // If a marker for this bus doesn't exist, create it
+                            markers[busId] = L.marker(latLng).addTo(mymap)
+                                .bindPopup('A bus is here.')
+                                .openPopup();
+                        }
+                    });
+
+                    // Send the bus data to Python
+                    fetch('/save-coordinates', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(busesLatLng),
+                    })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
