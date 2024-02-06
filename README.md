@@ -1,6 +1,6 @@
 # GeoBikunAlert
 
-GeoBikunAlert is a Flask-based web application that tracks the real-time location of buses on the University of Indonesia campus. The application scrapes bus location data from [Bikun UI](https://bikun.ui.ac.id) and displays it on a map. When a bus is nearing a specified station, the application sends an email notification to alert users.
+GeoBikunAlert is a Flask-based web application that tracks the real-time location of buses on the University of Indonesia campus. The application scrapes bus location data from [Bikun Tracker](https://bikun.ui.ac.id) and displays it on a map. When a bus is nearing a specified station, the application sends an email notification to alert users.
 
 ## Features
 
