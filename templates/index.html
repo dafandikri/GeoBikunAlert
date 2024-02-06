@@ -37,14 +37,18 @@
                             return parseInt(coord.trim());
                         });
 
+                        // Convert the coordinates to a Leaflet point
                         var point = L.point(coords[0], coords[1]);
+                        // Convert the Leaflet point to latitude and longitude
                         var latLng = mymap.containerPointToLatLng(point);
 
+                        // Create a new bus object with the id and latitude and longitude
                         var busLatLng = {
                             id: busId,
                             lat: latLng.lat,
                             lng: latLng.lng,
                         };
+                        // Add the new bus object to the busesLatLng array
                         busesLatLng.push(busLatLng);
 
                         if (markers[busId]) {
