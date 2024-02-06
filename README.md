@@ -32,7 +32,6 @@ GeoBikunAlert is a Flask-based web application that tracks the real-time locatio
 
 ## Future Improvements
 
-- Add user accounts and allow users to customize their notifications.
 - Improve the scraping efficiency and accuracy.
 - Add more detailed bus information, such as bus number and capacity.
 
