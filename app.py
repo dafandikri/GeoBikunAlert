@@ -81,7 +81,7 @@ def get_bus_data():
 station_location = (-6.361240619348628, 106.82327825578848)
 
 # Define a proximity threshold (in meters)
-proximity_threshold = 200
+proximity_threshold = 100
 
 # Define your email settings
 smtp_server = 'smtp.gmail.com'
