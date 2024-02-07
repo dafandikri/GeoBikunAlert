@@ -130,7 +130,7 @@ def save_coordinates():
                 # Skip this bus
                 continue
 
-            # Notify the user
+            # Notify the user that the bus is nearing the station
             # Create the email
             msg = MIMEMultipart()
             msg['From'] = email_address
@@ -152,8 +152,8 @@ def save_coordinates():
 
     return jsonify({'message': 'Coordinates processed successfully'})
 
-# Schedule the function to clear the list of notified buses every 10 minutes
-scheduler.add_job(clear_notified_buses, 'interval', minutes=10)
+# Schedule the function to clear the list of notified buses every 5 minutes
+scheduler.add_job(clear_notified_buses, 'interval', minutes=5)
 
 # Function to open and close the browser
 def open_and_close_browser():
