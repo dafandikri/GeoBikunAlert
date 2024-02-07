@@ -8,7 +8,12 @@
 <body>
     <div id="mapid" style="width: 621px; height: 745px;"></div>
     <script>
-        var mymap = L.map('mapid').setView([-6.3598763353132775, 106.82718514950439], 15);
+        var mymap = L.map('mapid', {
+            center: [-6.3598763353132775, 106.82718514950439],
+            zoom: 15,
+            zoomControl: false,  // Disable zoom control
+            dragging: false,  // Disable dragging
+        });
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
