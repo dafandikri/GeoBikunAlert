@@ -80,6 +80,17 @@ def get_bus_data():
 # Define the station's GPS location
 station_location = (-6.361240619348628, 106.82327825578848)
 
+# Initialize the iPhone's location with a default value
+iphone_location = (0, 0)
+
+# Route to save the iPhone's location
+@app.route('/save-iphone-location', methods=['POST'])
+def save_iphone_location():
+    global iphone_location
+    data = request.get_json()
+    iphone_location = (data['lat'], data['lng'])
+    return jsonify({'message': 'Location saved successfully'})
+
 # Define a proximity threshold (in meters)
 proximity_threshold = 100
 
