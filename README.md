@@ -19,8 +19,7 @@ GeoBikunAlert is a Flask-based web application that tracks the real-time locatio
 
 1. Clone the repository.
 2. Install the required Python packages using pip: `pip install -r requirements.txt`
-3. Update to_address: Open the `app.py` file (or the relevant file) and replace
-`dafandikri@gmail.com` with your email address where you want to receive notifications.
+3. Update to_address: Open the `app.py` file and replace `dafandikri@gmail.com` with your email address where you want to receive notifications.
 4. Run the Flask application: `python app.py`
 5. Open a web browser and go to `http://localhost:5000` to view the application.
 
