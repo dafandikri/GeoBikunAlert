@@ -20,8 +20,6 @@
             maxZoom: 19,
         }).addTo(mymap);
 
-        var buses = {{ buses|tojson|safe }}; // This should be passed from Flask
-
         var markers = {}; // Create an object to hold the markers
 
         var busesLatLng = [];  // Create an array to hold the new bus objects
