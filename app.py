@@ -1,3 +1,6 @@
+# Set the email address to which you want to send notifications
+to_address = 'dafandikri@gmail.com'
+
 # Import necessary modules
 from flask import Flask, request, jsonify, render_template
 from geopy.distance import geodesic
@@ -94,12 +97,11 @@ def save_iphone_location():
 # Define a proximity threshold (in meters)
 proximity_threshold = 100
 
-# Define your email settings
+# Define email settings
 smtp_server = 'smtp.gmail.com'
 smtp_port = 587
 email_address = 'dafandikri@gmail.com'
 email_password = 'rjkg nfgj deli bbrh'
-to_address = 'dafandikri@gmail.com'
 
 # List to hold buses for which notifications have been sent
 notified_buses = []
